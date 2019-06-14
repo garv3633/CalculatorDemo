@@ -1,2 +1,0 @@
-# CalculatorDemo
-Silicus Assignment
