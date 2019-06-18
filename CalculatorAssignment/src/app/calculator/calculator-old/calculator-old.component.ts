@@ -11,6 +11,7 @@ import { CalculatorService } from 'src/app/services/calculator-service.service';
 export class CalculatorOldComponent implements OnInit {
 
   results:Result[] = [];
+  result;
   calcForm:FormGroup;
   constructor(private fb:FormBuilder, private calculatorService:CalculatorService) { }
 
@@ -33,7 +34,7 @@ export class CalculatorOldComponent implements OnInit {
     this.calculatorService.getResult(res)
               .subscribe(
                 result=>{
-                  res.ans = result['result'];
+                  res.ans = this.result = result['result'];
                   this.results.unshift(res)
                 })
   }

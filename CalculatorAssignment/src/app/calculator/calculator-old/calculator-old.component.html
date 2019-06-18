@@ -21,6 +21,7 @@
         <button type="submit" class="btn btn-primary">GO</button>
       </div>
     </div>
+    <h2 *ngIf="result">Result : {{result}}</h2>
   </form>
   <app-result [resultsArr]='results'></app-result>
 </div>
