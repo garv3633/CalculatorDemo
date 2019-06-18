@@ -21,7 +21,6 @@ export class CalculatorComponent implements OnInit {
 
   evaluate(exp){
     this.error=null;
-    // console.log("enter pressed " + exp + "prec = ");
     let res : Result ={
       expr : exp,
       precision: 0,
@@ -36,7 +35,6 @@ export class CalculatorComponent implements OnInit {
             this.results.unshift(res);
       },
       error=>{
-        console.log(error)
         if(error.status==400){
           this.error= error.error.error
         }

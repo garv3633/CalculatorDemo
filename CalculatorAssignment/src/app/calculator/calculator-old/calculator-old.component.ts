@@ -12,6 +12,7 @@ export class CalculatorOldComponent implements OnInit {
 
   results:Result[] = [];
   result;
+  error;
   calcForm:FormGroup;
   constructor(private fb:FormBuilder, private calculatorService:CalculatorService) { }
 
@@ -24,6 +25,7 @@ export class CalculatorOldComponent implements OnInit {
   }
 
   evaluate(){
+    this.error=null;
     let expr: string = this.calcForm.value['firstOperand']+this.calcForm.value['operator']+this.calcForm.value['secondOperand'];
     let res : Result = {
       expr : expr,
@@ -36,6 +38,14 @@ export class CalculatorOldComponent implements OnInit {
                 result=>{
                   res.ans = this.result = result['result'];
                   this.results.unshift(res)
+                },
+                error=>{
+                  if(error.status = 400){
+                    this.error = error.error.error
+                  }
+                  else{
+                    this.error = "Something Went wrong. Plz try again Later"
+                  }
                 })
   }
 
