@@ -1,0 +1,26 @@
+<div class="container">
+  <form [formGroup]="calcForm" (ngSubmit)="evaluate()">
+    <h2>Super Calculator :</h2>
+    <div class="row form-group">
+      <div class="col-4">
+        <input type="text" class="form-control" formControlName="firstOperand">
+      </div>
+      <div class="col-2">
+        <select class="form-control" formControlName="operator">
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
+          <option value="%">%</option>
+        </select>
+      </div>
+      <div class="col-4">
+        <input type="text" class="form-control" formControlName="secondOperand">
+      </div>
+      <div class="col-2">
+        <button type="submit" class="btn btn-primary">GO</button>
+      </div>
+    </div>
+  </form>
+  <app-result [resultsArr]='results'></app-result>
+</div>

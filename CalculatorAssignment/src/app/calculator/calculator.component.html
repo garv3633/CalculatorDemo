@@ -3,8 +3,9 @@
     <div class="col-md-6">
       <h2>Super Calculator :</h2>
       <div class="row">
-        <input type="text" #disp [(ngModel)]="answer" class="form-control" (keyup.enter)="evaluate(disp.value)" placeholder="Enter expression and press enter" style="text-align: right;">
-        <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+        <input type="text" #disp [(ngModel)]="answer" class="input-group-text col" (keyup.enter)="evaluate(disp.value)"
+                placeholder="Enter expression and press enter" style="text-align: right;">
+        <div class="alert alert-danger col" *ngIf="error">{{error}}</div>
       </div>
       <div class="row">
         <button class="btn btn-outline-dark btn-danger col bt" (click)="clear()">C</button>
@@ -37,22 +38,7 @@
       </div>
     </div>
     <div class="col-md-6">
-      <!-- <app-result></app-result> -->
-      <h2>History :</h2>
-      <table class="table table-hover">
-        <thead  class="thead-dark">
-          <tr>
-            <th scope="col">Expression</th>
-            <th scope="col">Result</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let result of results">
-            <td>{{result.expr}}</td>
-            <td>{{result.ans}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <app-result [resultsArr]='results' (singleResultClick)="singleResult($event)"></app-result>
     </div>
   </div>
 </div>

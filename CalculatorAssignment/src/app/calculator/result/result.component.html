@@ -1,13 +1,16 @@
 <h2>History :</h2>
-<table class="table">
-  <thead>
+
+<table class="table table-hover">
+  <thead  class="thead-dark">
     <tr>
+      <th scope="col">Time</th>
       <th scope="col">Expression</th>
       <th scope="col">Result</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let result of results">
+    <tr *ngFor="let result of resultsArr" (click)="resultClick(result.expr)" style="cursor: pointer">
+      <td>{{result.time | date:'h:mm:ss a'}}</td>
       <td>{{result.expr}}</td>
       <td>{{result.ans}}</td>
     </tr>

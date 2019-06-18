@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { CalculatorService } from '../services/calculator-service.service';
 import { Result } from '../models/result.model';
 
@@ -9,7 +9,7 @@ import { Result } from '../models/result.model';
 })
 export class CalculatorComponent implements OnInit {
 
-  @Output('resultsArr')
+  @Output()
   results: Result[] = []
 
   answer="";
@@ -20,29 +20,30 @@ export class CalculatorComponent implements OnInit {
   ngOnInit() {  }
 
   evaluate(exp){
-    console.log("enter pressed " + exp + "prec = ");
-    let resu : Result ={
-      expr : "",
+    this.error=null;
+    // console.log("enter pressed " + exp + "prec = ");
+    let res : Result ={
+      expr : exp,
       precision: 0,
-      ans: ""
+      ans: "",
+      time: Date.now() 
     };
-    resu.expr = exp
-    this.calcService.getResult(resu)
+    this.calcService.getResult(res)
         .subscribe(
           result=>{
-            resu.ans = result["result"];
-            this.answer = resu.ans;
-            this.results.unshift(resu);
+            res.ans = result["result"];
+            this.answer = res.ans;
+            this.results.unshift(res);
       },
       error=>{
         console.log(error)
-        if(error.status==400)
-        {this.error="Wrong expression"}
+        if(error.status==400){
+          this.error= error.error.error
+        }
         else{
           this.error ="Something Went Wrong"
         }
       });
-    // this.results.unshift(this.res);
   }
 
   pressBtn($event){
@@ -57,5 +58,9 @@ export class CalculatorComponent implements OnInit {
 
   back(){
     this.answer = this.answer.slice(0,this.answer.length-1);
+  }
+
+  singleResult($event){
+    this.answer = $event;
   }
 }
