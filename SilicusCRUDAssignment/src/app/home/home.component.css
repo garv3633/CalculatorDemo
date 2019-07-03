@@ -1,0 +1,29 @@
+/* .myContainer {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  } */
+  
+  .myFilter {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+
+  th td{
+      word-wrap: break-word;
+  }
+  
+  th {
+      font-size: 16px;
+      color: #fff;
+  }
+  
+  .mat-form-field {
+    font-size: 18px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    max-height: 500px;
+
+  }
